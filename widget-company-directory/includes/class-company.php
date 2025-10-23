@@ -87,4 +87,33 @@ class WCD_Company {
     // - Loading from WordPress
     // - Validation
     // - Any other business logic you need
+
+    function save($post_id = 0) {
+        $data = $this->get_data();
+        $post_data = array(
+            'post_title' => $data['name'],
+            'post_content' => $data['summary'],
+            'post_type' => 'widget_company',
+            'post_status' => 'publish',
+        );
+
+        // Update or insert post
+        if ($post_id) {
+            $post_data['ID'] = $post_id;
+            $post_id = wp_update_post($post_data);
+        } else {
+            $post_id = wp_insert_post($post_data);
+        }
+        
+        update_post_meta($post_id, 'rating', $data['rating']);
+        update_post_meta($post_id, 'benefits_1', $data['benefits'][0]);
+        update_post_meta($post_id, 'benefits_2', $data['benefits'][1]);
+        update_post_meta($post_id, 'benefits_3', $data['benefits'][2]);
+        update_post_meta($post_id, 'cons_1', $data['cons'][0]);
+        update_post_meta($post_id, 'cons_2', $data['cons'][1]);
+        update_post_meta($post_id, 'cons_3', $data['cons'][2]);
+        update_post_meta($post_id, 'has_free_trial', (bool) $data['has_free_trial']);
+
+        return $post_id;
+    }
 }
