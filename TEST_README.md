@@ -109,18 +109,21 @@ _After completing the assessment, please document your implementation here:_
 
 ### Import Process
 _Describe how you implemented the data import and why you chose that approach_
+
 Created admin page where editors can click a button to import companies
 
 I thought this is easier for editors than something like wp-cli
 
 ### Architecture Decisions
 _Explain your choices for data storage, list management, and frontend display_
+
 Decided to use custom post types (companies, list) and postmeta(company data, companies in list) to leverage WP built in functions
 
 Frontend I used a shortcode because I'm not too familiar with the custom block creation, and I was tight on time
 
 ### Editor Workflow
 _Brief guide on how editors use your system to create and manage recommended lists_
+
 Editors can go to the import page click a button and the companies are imported
 
 Editors can edit created companies and the meta data in the edit screen
@@ -134,6 +137,7 @@ to use the shortcode its [recommended_list id=(list_id)]
 
 ### Tradeoffs and Considerations
 _Discuss any tradeoffs you made and what you would improve with more time_
+
 used a shortcode bc of time but I think a custom block would be way easier for non technical editors to use
 
 used meta fields like 'benefit_1', 'benefit_2', 'benefit_3', for cons but there is probably a better way to set that up in case there is more than 3 benefits
