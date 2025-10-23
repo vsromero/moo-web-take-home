@@ -116,4 +116,25 @@ class WCD_Company {
 
         return $post_id;
     }
+
+    public function load($post_id) {
+        $post = get_post($post_id);
+        if (!$post || $post->post_type !== 'widget_company') {
+            return false;
+        }
+
+        $this->data = array(
+            'name'  => $post->post_title,
+            'summary'  => $post->post_content,
+            'rating'  => get_post_meta($post_id, 'rating', true),
+            'benefits_1'  => get_post_meta($post_id, 'benefits_1', true),
+            'benefits_2'  => get_post_meta($post_id, 'benefits_2', true),
+            'benefits_3'  => get_post_meta($post_id, 'benefits_3', true),
+            'cons_1'  => get_post_meta($post_id, 'cons_1', true),
+            'cons_2'  => get_post_meta($post_id, 'cons_2', true),
+            'cons_3'  => get_post_meta($post_id, 'cons_3', true),
+            'has_free_trial'  => get_post_meta($post_id, 'has_free_trial', true),
+        );
+        return true;
+    }
 }
