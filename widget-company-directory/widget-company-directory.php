@@ -115,3 +115,22 @@ function run_widget_company_directory() {
     // require_once WIDGET_COMPANY_DIRECTORY_PLUGIN_DIR . 'includes/class-company.php';
 }
 add_action( 'plugins_loaded', 'run_widget_company_directory' );
+
+/**
+ * Register CPT for widget company and recommended list
+ */
+function register_custom_post_types() {
+    register_post_type('widget_company', [
+        'label' => 'Widget Companies',
+        'public' => true,
+        'show_in_menu' => true,
+        'supports' => ['title', 'editor', 'custom-fields'],
+    ]);
+    register_post_type('recommended_list', [
+        'label' => 'Recommended List',
+        'public' => true,
+        'show_in_menu' => 'edit.php?post_type=widget_company',
+        'supports' => ['title'],
+    ]);
+}
+add_action('init', 'register_custom_post_types');
