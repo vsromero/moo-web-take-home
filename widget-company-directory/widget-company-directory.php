@@ -112,7 +112,10 @@ function run_widget_company_directory() {
     // Load your classes, register custom post types, etc.
 
     // Example: Load the Company class
-    // require_once WIDGET_COMPANY_DIRECTORY_PLUGIN_DIR . 'includes/class-company.php';
+    require_once WIDGET_COMPANY_DIRECTORY_PLUGIN_DIR . 'includes/class-company.php';
+    require_once WIDGET_COMPANY_DIRECTORY_PLUGIN_DIR . 'admin/company-bulk-import.php';
+    require_once WIDGET_COMPANY_DIRECTORY_PLUGIN_DIR . 'admin/user-interface.php';
+    require_once WIDGET_COMPANY_DIRECTORY_PLUGIN_DIR . 'public/list_shortcode.php';
 }
 add_action( 'plugins_loaded', 'run_widget_company_directory' );
 

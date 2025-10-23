@@ -2,7 +2,7 @@
  * WordPress dependencies
  */
 import { useBlockProps } from '@wordpress/block-editor';
-
+import { useSelect } from '@wordpress/data'
 /**
  * Internal dependencies
  */
@@ -16,7 +16,10 @@ import './style.css';
  */
 export function Edit() {
 	const blockProps = useBlockProps();
-
+	const posts = useSelect( (select) => {
+		return select('core').getEntityRecords('postType','recommended_list');
+	},[]);
+	console.log(posts);
 	return (
 		<div { ...blockProps }>
 			<div className="company-list-placeholder">
